@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import UserHeader from './UserHeader';
-import PaypalExpressBtn from 'react-paypal-express-checkout';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
+import { getPerson } from '../../actions/securityActions';
 
 class Landing extends Component {
 
@@ -17,17 +20,6 @@ class Landing extends Component {
             const products = res.data;
             this.setState( { products });
         })
-    }
-
-
-    render() {
-
-        //Making the payment
-        const onSuccess = (payment) => {
-            // Congratulation, it came here means everything's fine!
-            		console.log("The payment was succeeded!", payment);
-            		// You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
-        }
 
         //Decoding the current user
         const jwt = localStorage.getItem("jwtToken");
@@ -35,6 +27,23 @@ class Landing extends Component {
         const username = user.fullName;
         const id = user.id;
         const email = user.username;
+
+        this.props.getPerson(id, this.props.history); //get all the information related to the current user
+
+
+    }
+
+
+    render() {
+
+
+        //Decoding the current user
+        const jwt = localStorage.getItem("jwtToken");
+        const user = jwtDecode(jwt);
+        const username = user.fullName;
+        const id = user.id;
+        const email = user.username;
+        const role = localStorage.getItem("role");
 
         //Check if there is an session or not
         const checkSession = () => {
@@ -45,14 +54,10 @@ class Landing extends Component {
             }
         }
 
-        //PayPal secret token
-        const client = {
-            sandbox:    'AcoEYwGkdnyyoLeeE587-akrwyVM-aYij-pJ7gfGLO9Xx9MNsSlsFxaRs5_W4MctSYD9Xw4-tBdTyHni',
-        }
 
         return(<>
         {checkSession()}
-        <UserHeader username={username}/>
+        <UserHeader username={username} role={role}/>
         <div className="container">
             <div class="row">
             <h3><center>Products in our stock</center></h3>
@@ -66,8 +71,6 @@ class Landing extends Component {
                             <p className="card-text"><strong>Price</strong>: AUD {product.productPrice}.00</p>
                             <p className="card-text"><strong>Seller:</strong> {product.productSeller}</p>
                             <p className="card-text"><strong>Description:</strong> {product.productDescription}</p>
-                            {/* <PaypalExpressBtn client={client} currency={'AUD'} total={product.productPrice} onSuccess={onSuccess}/>
-                            <a href={'/viewProducts/' + product.productImage}>View The Product</a> */}
                             <button className="btn btn-lg btn-success" onClick={() => {
                                 window.location.href = "/viewProducts/" + product.productName;
                             }}>
@@ -82,4 +85,16 @@ class Landing extends Component {
     }
 }
 
-export default Landing;
+Landing.propTypes = {
+    getPerson: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  
+const mapStateToProps = state => ({
+errors: state.errors
+});
+  
+export default connect(
+    mapStateToProps,
+    { getPerson }
+)(Landing);

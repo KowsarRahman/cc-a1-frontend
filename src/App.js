@@ -8,6 +8,8 @@ import { Switch } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import ViewProducts from "./components/Layout/ViewProducts";
+import AddProducts from "./components/Auth/AddProducts";
+import ViewOrders from "./components/Layout/ViewOrders";
 import store from "./store";
 
 
@@ -22,6 +24,8 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/dashboard" component={Landing} />
           <Route exact path="/viewProducts/:productName" component={ViewProducts} />
+          <Route exact path="/addProducts" component={AddProducts} />
+          <Route exact path="/orders" component={ViewOrders} />
           </Switch>
         </Router>
         </Provider>

@@ -5,7 +5,7 @@ import React, { Component } from 'react'
     render() {
         return (
             <div>
-            <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-4">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-success mb-4">
             <div className="container">
                 <a className="navbar-brand" href="/">
                     Freshy
@@ -27,6 +27,7 @@ import React, { Component } from 'react'
                                 Login
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
