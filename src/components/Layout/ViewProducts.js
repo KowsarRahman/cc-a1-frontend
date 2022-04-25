@@ -52,7 +52,7 @@ class ViewProducts extends Component {
         }
 
         return(<>
-        <UserHeader username={username}/>
+        <UserHeader username={username} role={localStorage.getItem("role")}/>
 
 <div className="container">
 
