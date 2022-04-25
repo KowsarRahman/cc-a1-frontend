@@ -78,7 +78,7 @@ class AddProducts extends Component {
               productPrice: this.state.productPrice,
               productSeller: email,
               productDescription: this.state.productDescription,
-              productImage: "https://dn52icgprolk6.cloudfront.net/" + newFileName + ".jpeg"
+              productImage: "https://dn52icgprolk6.cloudfront.net/" + newFileName + ".jpg"
             }
           );
 
