@@ -53,7 +53,7 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
             <h1 className="display-4 text-center">Sign Up to be freshy customer!</h1>
-            <center><p>If the page refreshes, then sign up was successful!</p></center>
+            <center><p>If the page refreshes, then sign up was successful! [DEBUG]</p></center>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
