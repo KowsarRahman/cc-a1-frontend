@@ -46,8 +46,8 @@ class ViewOrders extends Component {
                         <>
                         <div className="col-lg-6 col-md-4 col-8">
                             <p className="card-text"><strong>Product:</strong> {order.orderProduct}</p>
-                            <p className="card-text"><strong>Price:</strong> {order.orderPrice}</p>
-                            <p className="card-text"><strong>Seller</strong>: AUD {order.orderSeller}</p>
+                            <p className="card-text"><strong>Price:</strong>AUD {order.orderPrice}</p>
+                            <p className="card-text"><strong>Seller</strong>: {order.orderSeller}</p>
                             <p className="card-text"><strong>Status:</strong> {order.status}</p>
                         </div>
                         </>)}
